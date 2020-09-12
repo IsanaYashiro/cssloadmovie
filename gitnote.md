@@ -57,3 +57,9 @@ git is a free softward
 
 免密设置
 git config --global credential.helper store
+
+#### 三 分支管理
+本地分支version1删除后，同步至远程
+```c
+git push origin :version1 
+```

@@ -51,7 +51,9 @@ git is a free softward
 2. 把文件提交到版本库
 
 
-
-
-
 ![git-repo](https://www.liaoxuefeng.com/files/attachments/919020037470528/0)
+
+
+
+免密设置
+git config --global credential.helper store

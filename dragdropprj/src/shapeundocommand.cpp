@@ -1,0 +1,30 @@
+﻿#include <QGraphicsItem>
+
+#include <QDebug>
+
+#include "../include/shapeundocommand.h"
+ShapeUndoCommand::ShapeUndoCommand(QGraphicsScene *_scene,QUndoCommand *parent/*=nullptr*/)
+	:QUndoCommand(parent)
+{
+	mp_scene = _scene;
+	mlist_selectedItems = _scene->selectedItems();
+}
+
+void ShapeUndoCommand::redo()
+{
+	for (auto item : mlist_selectedItems)
+	{
+		mp_scene->removeItem(item);
+	}
+	setText(QObject::tr("Redo Delete %1").arg(mlist_selectedItems.count()));
+}
+
+void ShapeUndoCommand::undo()
+{
+	for (auto item : mlist_selectedItems)
+	{
+		mp_scene->addItem(item);
+	}
+	mp_scene->update();
+	setText(QObject::tr("Undo Delete %1").arg(mlist_selectedItems.count()));
+}
